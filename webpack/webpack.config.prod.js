@@ -9,7 +9,7 @@ module.exports = {
   entry: ['./src/index.js'],
   output: {
     path: path.join(fileRoot, 'dist'),
-    filename: 'google-login.js',
+    filename: 'google-authorize.js',
     libraryTarget: 'umd',
     library: 'GoogleAuthorize'
   },

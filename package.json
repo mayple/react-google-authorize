@@ -1,6 +1,6 @@
 {
   "name": "react-google-authorize",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Google Authorize Component for React",
   "main": "dist/google-authorize.js",
   "scripts": {
