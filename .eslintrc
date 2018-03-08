@@ -1,0 +1,122 @@
+{
+  // This is the Perfpie eslint config for React projects.
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb"
+  ],
+  "plugins": [
+  ],
+  "env": {
+    "browser": true,
+    "jest": true,
+    "jasmine": true
+  },
+  "globals": {
+
+    "__DEVELOPMENT__": true,
+    "__PRODUCTION__": true,
+    "__CLIENT__": true,
+    "__SERVER__": true,
+    "__DEBUG__": true,
+    "__COVERAGE__": true,
+    "__BASENAME__": true,
+    "__INTERNAL_GRAPHQL_URL__": true,
+    "__EXTERNAL_GRAPHQL_URL__": true,
+    "__FACEBOOK_APP_ID__": true,
+    "__FILESTACK_API_KEY__": true,
+    "__DRIFT_API_KEY__": true,
+    "__PAYPAL_MODE__": true,
+    "__PAYPAL_CLIENT_ID__": true,
+    "__TALKJS_APP_ID__": true,
+    "__GOOGLE_CLIENT_ID__": true
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "webpack/webpack.config.client.development.js"
+      }
+    }
+  },
+  "rules": {
+    "max-len": [
+      "error",
+      120,
+      {
+        "tabWidth": 2,
+        "ignoreComments": true,
+        "ignoreUrls": true
+      }
+    ],
+    "arrow-body-style": [
+      "error",
+      "always"
+    ],
+    "key-spacing": "off",
+    "padded-blocks": "off",
+    "import/no-dynamic-require": 0,
+    "generator-star-spacing": "off",
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "never",
+        "exports": "never",
+        "functions": "ignore"
+      }
+    ],
+    "function-paren-newline": [
+      "error",
+      "consistent"
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        "args": "all",
+        "caughtErrors": "none"
+      }
+    ],
+    "import/prefer-default-export": "off",
+    "no-underscore-dangle": "off",
+    "no-else-return": "off",
+    "no-restricted-syntax": [
+      "error",
+      "WithStatement",
+      "ForInStatement",
+      "BreakStatement",
+      "DebuggerStatement"
+    ],
+    "class-methods-use-this": "off",
+
+    "import/no-extraneous-dependencies": [
+      "off",
+      {
+        "devDependencies": [
+          "**/*.test.js",
+          "**/*.spec.js",
+          "**/*.stories.js"
+        ]
+      }
+    ],
+    "react/prefer-stateless-function": "off",
+    // TODO: re-enable this when we upgrade the eslint version
+    //"react/jsx-max-props-per-line": ["error", { "maximum": 1, "when": "multiline" }],
+    "react/forbid-prop-types": "off",
+    "react/jsx-filename-extension": [
+      "error",
+      {
+        "extensions": [
+          ".js",
+          ".jsx"
+        ]
+      }
+    ],
+    "jsx-a11y/no-marquee": "off",
+    "react/no-typos": "off",
+    "object-curly-newline": "off",
+    "react/jsx-max-props-per-line": ["error", { "when": "multiline", "maximum": 2 }],
+    "jsx-a11y/anchor-is-valid": "off",
+    "react/default-props-match-prop-types": "off",
+    "jsx-a11y/label-has-for": "off"
+  }
+}
