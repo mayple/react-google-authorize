@@ -149,3 +149,8 @@ Pull requests and stars are always welcome. For bugs and feature requests, [plea
 
 * [github/advance512](https://github.com/advance512)
 * [Homepage](http://www.alondiamant.com)
+
+## Contributors
+
+**Eliran Amar**
+* [github/eliranamar](https://github.com/eliranamar)
