@@ -1,5 +1,5 @@
 /* eslint-disable no-console,no-restricted-syntax */
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 const scriptLoadCallbacks = [];
@@ -8,6 +8,7 @@ function addScript(d, s, id, cb) {
   scriptLoadCallbacks.push(cb);
 
   if (d.getElementById(id) != null) {
+    cb();
     return;
   }
 
@@ -53,25 +54,25 @@ class GoogleAuthorize extends Component {
       e.preventDefault(); // to prevent submit if used within form
     }
 
-    const {disabled} = this.state;
+    const { disabled } = this.state;
     if (disabled) {
       return;
     }
 
-    const {clientId, cookiePolicy, loginHint, hostedDomain, fetchBasicProfile, redirectUri, discoveryDocs, onFailure, uxMode, scope, responseType, onSuccess, onRequest, prompt} = this.props;
+    const { clientId, cookiePolicy, loginHint, hostedDomain, fetchBasicProfile, redirectUri, discoveryDocs, onFailure, uxMode, scope, responseType, onSuccess, onRequest, prompt } = this.props;
 
     const params = {
-      client_id: clientId,
-      cookie_policy: cookiePolicy,
-      login_hint: loginHint,
-      hosted_domain: hostedDomain,
-      fetch_basic_profile: fetchBasicProfile,
+      client_id:              clientId,
+      cookie_policy:          cookiePolicy,
+      login_hint:             loginHint,
+      hosted_domain:          hostedDomain,
+      fetch_basic_profile:    fetchBasicProfile,
+      ux_mode:                uxMode,
+      redirect_uri:           redirectUri,
+      include_granted_scopes: true,
       discoveryDocs,
-      ux_mode: uxMode,
-      redirect_uri: redirectUri,
       prompt,
       scope,
-      include_granted_scopes: true,
     };
 
     if (responseType === 'code') {
@@ -106,17 +107,18 @@ class GoogleAuthorize extends Component {
     } = this.props;
     const disabled = this.state.disabled || this.props.disabled;
     const initialStyle = {
-      display: 'inline-block',
-      background: '#d14836',
-      color: '#fff',
-      width: 190,
-      paddingTop: 10,
+      display:       'inline-block',
+      background:    '#d14836',
+      color:         '#fff',
+      width:         190,
+      paddingTop:    10,
       paddingBottom: 10,
-      borderRadius: 2,
-      border: '1px solid transparent',
-      fontSize: 16,
-      fontWeight: 'bold',
-      fontFamily: 'Roboto'
+      borderRadius:  2,
+      border:        '1px solid transparent',
+      fontSize:      16,
+      fontWeight:    'bold',
+      fontFamily:    'Roboto',
+      cursor:        'pointer',
     };
     const styleProp = (() => {
       if (style) {
@@ -136,7 +138,7 @@ class GoogleAuthorize extends Component {
       tag,
       {
         onClick: this.handleClick,
-        style: defaultStyle,
+        style:   defaultStyle,
         type,
         disabled,
         className
@@ -148,44 +150,45 @@ class GoogleAuthorize extends Component {
 }
 
 GoogleAuthorize.propTypes = {
-  onSuccess: PropTypes.func.isRequired,
-  onFailure: PropTypes.func.isRequired,
-  clientId: PropTypes.string.isRequired,
-  onRequest: PropTypes.func,
-  buttonText: PropTypes.string,
-  scope: PropTypes.string,
-  className: PropTypes.string,
-  redirectUri: PropTypes.string,
-  cookiePolicy: PropTypes.string,
-  loginHint: PropTypes.string,
-  hostedDomain: PropTypes.string,
-  children: PropTypes.node,
-  style: PropTypes.object,
-  disabledStyle: PropTypes.object,
+  onSuccess:         PropTypes.func.isRequired,
+  onFailure:         PropTypes.func.isRequired,
+  clientId:          PropTypes.string.isRequired,
+  onRequest:         PropTypes.func,
+  buttonText:        PropTypes.string,
+  scope:             PropTypes.string,
+  className:         PropTypes.string,
+  redirectUri:       PropTypes.string,
+  cookiePolicy:      PropTypes.string,
+  loginHint:         PropTypes.string,
+  hostedDomain:      PropTypes.string,
+  children:          PropTypes.node,
+  style:             PropTypes.object,
+  disabledStyle:     PropTypes.object,
   fetchBasicProfile: PropTypes.bool,
-  prompt: PropTypes.string,
-  tag: PropTypes.string,
-  disabled: PropTypes.bool,
-  discoveryDocs: PropTypes.array,
-  uxMode: PropTypes.string,
-  responseType: PropTypes.string,
-  type: PropTypes.string
+  prompt:            PropTypes.string,
+  tag:               PropTypes.string,
+  disabled:          PropTypes.bool,
+  discoveryDocs:     PropTypes.array,
+  uxMode:            PropTypes.string,
+  responseType:      PropTypes.string,
+  type:              PropTypes.string
 };
 
 GoogleAuthorize.defaultProps = {
-  type: 'button',
-  tag: 'button',
-  buttonText: 'Login with Google',
-  scope: 'profile email',
-  prompt: '',
-  cookiePolicy: 'single_host_origin',
+  type:              'button',
+  tag:               'button',
+  buttonText:        'Login with Google',
+  scope:             'profile email',
+  prompt:            '',
+  cookiePolicy:      'single_host_origin',
   fetchBasicProfile: true,
-  uxMode: 'popup',
-  disabledStyle: {
-    opacity: 0.6
+  uxMode:            'popup',
+  disabledStyle:     {
+    opacity:    0.6,
+    background: '#9c9c9c',
+    cursor:     'not-allowed',
   },
-  onRequest: () => {
-  }
+  onRequest:         () => {}
 };
 
 export default GoogleAuthorize;
