@@ -170,7 +170,8 @@ describe('Google Authorize', () => {
     describe('With style and default props', () => {
         let style = {
             'padding': '10px',
-            'fontSize': '20px'
+            'fontSize': '20px',
+            'opacity': 0.6,
         };
 
         beforeEach(() => {

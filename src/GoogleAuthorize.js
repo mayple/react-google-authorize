@@ -1,13 +1,11 @@
 /* eslint-disable no-console,no-restricted-syntax */
+
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const scriptLoadCallbacks = [];
-
 function addScript(d, s, id, cb) {
-  scriptLoadCallbacks.push(cb);
 
-  if (d.getElementById(id) != null) {
+  if (d.getElementById(id)) {
     cb();
     return;
   }
@@ -20,10 +18,7 @@ function addScript(d, s, id, cb) {
   js.src = '//apis.google.com/js/client:platform.js';
   fjs.parentNode.insertBefore(js, fjs);
   js.onload = () => {
-    for (const currentCb of scriptLoadCallbacks) {
-      currentCb();
-    }
-    scriptLoadCallbacks.length = 0;
+    cb();
   };
 }
 
