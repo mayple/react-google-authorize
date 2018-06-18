@@ -98,9 +98,12 @@ class GoogleAuthorize extends Component {
 
   render() {
     const {
-      tag, type, style, className, disabledStyle, buttonText, children
+      tag, type, style, className, disabledStyle, buttonText, children, render
     } = this.props;
     const disabled = this.state.disabled || this.props.disabled;
+    if (render) {
+      return render({ onClick: this.handleClick })
+    }
     const initialStyle = {
       display:       'inline-block',
       background:    '#d14836',
@@ -166,7 +169,8 @@ GoogleAuthorize.propTypes = {
   discoveryDocs:     PropTypes.array,
   uxMode:            PropTypes.string,
   responseType:      PropTypes.string,
-  type:              PropTypes.string
+  type:              PropTypes.string,
+  render:            PropTypes.func
 };
 
 GoogleAuthorize.defaultProps = {

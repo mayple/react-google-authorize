@@ -66,7 +66,7 @@ ReactDOM.render(
 | uxMode       |  string  |  popup   | The UX mode to use for the sign-in flow. Valid values are popup and redirect. |
 | redirectUri       |  string  |  -   | If using ux_mode='redirect', this parameter allows you to override the default redirect_uri that will be used at the end of the consent flow. The default redirect_uri is the current URL stripped of query parameters and hash fragment. |
 | isSignedIn | boolean | false | If true will return GoogleUser object on load, if user has given your app permission |
-
+| render | function | - | Render prop to use a custom element, use renderProps.onClick |
 Google Scopes List: https://developers.google.com/identity/protocols/googlescopes
 
 ## onSuccess callback
