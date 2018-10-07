@@ -1,3 +1,4 @@
+import React from 'react';
 import { renderComponent, expect } from './test_helper';
 import { GoogleAuthorize } from '../src/index';
 
@@ -214,5 +215,33 @@ describe('Google Authorize', () => {
         it('displays a div element when tag prop is set to div', () => {
             expect(component.get(0).tagName).to.equal('DIV');
         });
+    });
+    describe('With custom render prop', () => {
+        beforeEach(() => {
+            propsObj = {
+                onSuccess(response) { },
+                onFailure(response) { },
+                render(renderProps) {
+                  return (
+                    <button id="my-component" onClick={renderProps.onClick} />
+                  );
+                },
+                clientId: '815121234598-5nn3e2ftm5hobdjbemuappb2t112345.apps.googleusercontent.com',
+            };
+            component = renderComponent(GoogleAuthorize, propsObj);
+        });
+
+        it('shows the button', () => {
+            expect(component).to.exist;
+        });
+
+        it('displays a button element when render prop is defined', () => {
+            expect(component.get(0).tagName).to.equal('BUTTON');
+        });
+
+        it('displays the custom element attribute when render prop is defined', () => {
+            expect(component.get(0).id).to.equal('my-component');
+        });
+
     });
 });

@@ -66,7 +66,7 @@ ReactDOM.render(
 | uxMode       |  string  |  popup   | The UX mode to use for the sign-in flow. Valid values are popup and redirect. |
 | redirectUri       |  string  |  -   | If using ux_mode='redirect', this parameter allows you to override the default redirect_uri that will be used at the end of the consent flow. The default redirect_uri is the current URL stripped of query parameters and hash fragment. |
 | isSignedIn | boolean | false | If true will return GoogleUser object on load, if user has given your app permission |
-
+| render | function | - | Render prop to use a custom element, use renderProps.onClick |
 Google Scopes List: https://developers.google.com/identity/protocols/googlescopes
 
 ## onSuccess callback
@@ -113,6 +113,31 @@ More details can be found in the official Google docs:
  * [GoogleAuth.then(onInit, onError)](https://developers.google.com/identity/sign-in/web/reference#googleauththenoninit-onerror)
  * [GoogleAuth.signIn(options)](https://developers.google.com/identity/sign-in/web/reference#googleauthsigninoptions)
  * [GoogleAuth.grantOfflineAccess(options)](https://developers.google.com/identity/sign-in/web/reference#googleauthgrantofflineaccessoptions)
+
+## Using a custom element
+
+If you prefer, you can use your own custom JSX/React component instead of the default authorization button.
+
+Just make sure to bind the `renderProps.onClick` as your component prop `onClick` listener, in other that to call the 
+properly authorization function like the example below:
+
+```js
+  <GoogleAuthorize
+    clientId={'815121234598-5nn3e2ftm5hobdjbemuappb2t112345.apps.googleusercontent.com'}
+    onSuccess={responseGoogle}
+    onFailure={responseGoogle}
+    render={(renderProps) => {
+      return (
+        <button
+          type="button"
+          onClick={renderProps.onClick}
+        >
+          My custom element
+        </button>
+      )
+    }}
+  />
+```
 
 ## Dev Server
 ```
