@@ -73,7 +73,6 @@ class GoogleAuthorize extends Component {
 
     if (params.response_type === 'code') {
       params.access_type = 'offline';
-      params.response_type = 'code';
     }
 
     onRequest();
