@@ -64,15 +64,15 @@ class GoogleAuthorize extends Component {
       fetch_basic_profile:    fetchBasicProfile,
       ux_mode:                uxMode,
       redirect_uri:           redirectUri,
+      response_type:          responseType,
       include_granted_scopes: true,
       discoveryDocs,
       prompt,
       scope,
     };
 
-    if (responseType === 'code') {
+    if (params.response_type === 'code') {
       params.access_type = 'offline';
-      params.response_type = 'code';
     }
 
     onRequest();
@@ -87,7 +87,7 @@ class GoogleAuthorize extends Component {
           return;
         }
 
-        if (responseType === 'code') {
+        if (params.response_type === 'code') {
           onSuccess(response);
         } else {
           onSuccess(response);
